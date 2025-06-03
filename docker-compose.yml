@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  tkinter-vnc:
+    build: .
+    ports:
+      - "8080:8080"  # Web VNC viewer
+    container_name: meu_container_vnc  # Nome do container
