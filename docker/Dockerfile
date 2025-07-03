@@ -1,73 +1,80 @@
-FROM debian:latest
+FROM ubuntu:24.04
+#           ^^^ Might need change
 
-# Versão do Dockerfile
 ARG VERSION=0.1.0
-
-# URL do repositório
 ARG GENESYS_REPO=https://github.com/rlcancian/Genesys-Simulator
 
-# Se o modo de execução é local ou remoto
 ENV REMOTE=0
-
-# A branch que o container usa
 ENV GENESYS_BRANCH=master
-
-# Caminho onde o GenESyS vai ser clonado
 ENV GENESYS_ROOT=/home/genesys/remote
-
-# Sub-caminho onde está localizado o arquivo do projeto
 ENV GENESYS_PROJECT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
-
-# Sub-caminho onde está o binário do Genesys com GUI
 ENV GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build-GenesysQtGUI-Desktop-Debug
-
-# Sub-caminho onde está o binário do Genesys sem GUI
 ENV GENESYS_NOGUI_SUBPATH=GenesysShell
 
-LABEL maintainer=$GENESYS_USER \
-url=$GENESYS_REPO \
-name="docker-genesys" \
-version=$VERSION
+LABEL url=$GENESYS_REPO \
+      name="docker-genesys" \
+      version=$VERSION
 
-# Instala todas as bibliotecas necessárias
-RUN echo "Instalando pre-requisitos" && \
-    apt-get update && \
-    apt-get upgrade --assume-yes && \
-DEBIAN_FRONTEND=noninteractive apt-get --assume-yes dist-upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install \
+# Install only required packages and GitHub CLI, then clean up
+RUN apt-get update && apt-get upgrade -y && \
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates \
         build-essential \
+        cmake \
+        make \
+        g++ \
         curl \
         git \
         libclang1 \
         libgl1-mesa-dri \
-        libgl1-mesa-glx \
+        libgl1 \
+        mesa-utils \
+        mesa-vulkan-drivers \
         xdg-utils \
         qtcreator \
-        qtbase5-dev \
-        qttools5-*
-        
-# Diminui o tamanho da imagem
-RUN echo "Limpando" && \
-    apt-get autoremove --assume-yes && \
-    apt-get clean && \
-    rm --force --recursive /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        qt6-base-dev \
+        qt6-tools-dev \
+        qt6-tools-dev-tools \
+        libqt5opengl5 \
+        libqt5opengl5-dev \
+        libqt6opengl6-dev \
+        libqt5gui5 \
+        libqt5core5a \
+        libqt5widgets5 \
+        libglib2.0-0 \
+        libxcb1 \
+        libx11-6 \
+        libx11-xcb1 \
+        libxext6 \
+        libxrender1 \
+        libxkbcommon0 \
+        libxcb-render0 \
+        libxcb-shape0 \
+        libxcb-xfixes0 \
+        # software-properties-common \
+    && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get install --no-install-recommends -y gh \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Instala o comando gh que é o CLI oficial do GitHub
-RUN echo "Preparando GitHub CLI" && \
-    type -p curl >/dev/null || (apt-get update && apt-get install curl -y) && \
-    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
-    chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
-    apt-get update && \
-    apt-get install gh -y
+# RUN wget http://ftp.gnu.org/gnu/gcc/gcc-12.3.0/gcc-12.3.0.tar.gz && \
+#     tar -xvzf gcc-12.3.0.tar.gz && \
+#     cd gcc-12.3.0 && ./contrib/download_prerequisites && \
+#     mkdir build && cd build && \
+#     ../configure --disable-multilib --enable-languages=c,c++ --prefix=/opt/gcc-12.3.0 && \
+#     make -j$(nproc) && make install && \
+#     cd / && rm -rf gcc-12.3.0 gcc-12.3.0.tar.gz
 
-# Clona o GenESyS
-RUN echo "Clonando GeNESyS" && \
-    git clone $GENESYS_REPO $GENESYS_ROOT
-    
-# Copia o script de inicialização para dentro do container
-COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh 
+# ENV LD_LIBRARY_PATH=/opt/gcc-12.3.0/lib64:$LD_LIBRARY_PATH
+
+# Clone GenESyS
+RUN git clone $GENESYS_REPO $GENESYS_ROOT
+
+# Copy entrypoint
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Executa o script de inicialização
 ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]

@@ -52,10 +52,18 @@ GENESYS_REMOTE_ROOT=/home/genesys/remote
 GENESYS_LOCAL_ROOT=/home/genesys/local
 
 # Path do executável compilado para execução do genesys pelo terminal
-GENESYS_NOGUI_SUBPATH=release/GenesysShell
+GENESYS_NOGUI_SUBPATH=projects/GenesysTerminalApplication/dist/GenesysShell
 
 # Path do executável compilado para execução do genesys pela interface gráfica
-GENESYS_GUI_SUBPATH=source/applications/gui/qt/build-GenesysQtGUI-Desktop-Debug/GenesysQtGUI
+GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build/debug
+
+GENESYS_GUI_BIN=GenesysQtGUI
+
+GENESYS_QT_PROJECT_NAME=GenesysQtGUI.pro
+
+GENESYS_QT_PROJECT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
+
+# source/applications/gui/qt/build-GenesysQtGUI-Desktop-Debug/GenesysQtGUI
 
 # Path do projeto Qt para execução do genesys pelo QtCreator
 GENESYS_PROJECT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro

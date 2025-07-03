@@ -18,3 +18,5 @@ run_gui:
 
 run_shell:
 	bash ./scripts/shell.sh
+remove_image:
+	bash ./scripts/remove_image.sh

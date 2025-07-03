@@ -1,5 +1,10 @@
 source ./scripts/env.sh
 
+if ! docker image inspect $GENESYS_IMAGE >/dev/null 2>&1; then
+    echo "Imagem do GenESyS não encontrada. Iniciando o build..."
+    bash ./scripts/build.sh
+fi
+
 if docker image inspect $GENESYS_IMAGE >/dev/null 2>&1; then
     xhost local:root
     if [[ $REMOTE == 1 ]]; then

@@ -41,6 +41,11 @@ Para abrir o GenESyS no Qt Creator via Docker:
 make run_qt
 ```
 
+Para remover a imagem do docker GenESyS:
+```bash
+make remove_image
+```
+
 ## Executando Remotamente
 
 Caso seja necessário executar o a imagem sem os scripts e comandos disponíveis aqui, é possível fazê-lo da seguinte forma:
