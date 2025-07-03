@@ -27,21 +27,21 @@ RUN apt-get update && apt-get upgrade -y && \
         git \
         libclang1 \
         libgl1-mesa-dri \
-        libgl1 \
-        mesa-utils \
+        # libgl1 \
+        # mesa-utils \
         mesa-vulkan-drivers \
-        xdg-utils \
+        # xdg-utils \
         qtcreator \
         qt6-base-dev \
         qt6-tools-dev \
         qt6-tools-dev-tools \
-        libqt5opengl5 \
-        libqt5opengl5-dev \
+        # libqt5opengl5 \
+        # libqt5opengl5-dev \
         libqt6opengl6-dev \
         libqt5gui5 \
         libqt5core5a \
         libqt5widgets5 \
-        libglib2.0-0 \
+        # libglib2.0-0 \
         libxcb1 \
         libx11-6 \
         libx11-xcb1 \
