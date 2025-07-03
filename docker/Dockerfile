@@ -7,7 +7,7 @@ ARG GENESYS_REPO=https://github.com/rlcancian/Genesys-Simulator
 ENV REMOTE=0
 ENV GENESYS_BRANCH=master
 ENV GENESYS_ROOT=/home/genesys/remote
-ENV GENESYS_PROJECT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
+ENV GENESYS_PROJECT_QT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
 ENV GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build-GenesysQtGUI-Desktop-Debug
 ENV GENESYS_NOGUI_SUBPATH=GenesysShell
 

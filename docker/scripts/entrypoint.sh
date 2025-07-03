@@ -26,8 +26,9 @@ elif [[ $1 == "qt" ]]; then
     mkdir -p /run/user/$(id -u)
     chmod 700 /run/user/$(id -u)
     git config --global --add safe.directory $GENESYS_ROOT
-    # echo $GENESYS_ROOT/$GENESYS_PROJECT_SUBPATH
-    /usr/bin/qtcreator $GENESYS_ROOT/$GENESYS_PROJECT_SUBPATH
+    # echo $GENESYS_ROOT #/$GENESYS_QT_PROJECT_SUBPATH
+    # ls -l /home/genesys/local/source/applications/gui/qt/GenesysQtGUI/autoloadplugins.txt
+    /usr/bin/qtcreator $GENESYS_ROOT/$GENESYS_QT_PROJECT_SUBPATH
 elif [[ $1 == "debug" ]]; then
     cd $GENESYS_ROOT
     /bin/bash 

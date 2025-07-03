@@ -9,7 +9,7 @@ Menu: O que deseja executar?
 2. GenESyS Shell
 3. IDE do GenESyS (QtCreator)
 4. Debug GenESyS Image
-5. Remover imagem do GenESyS e sair
+5. Remover imagem do GenESyS
 6. Abrir arquivo de configuração do ambiente Docker
 7. Sair
 > " input
@@ -29,7 +29,6 @@ case "$input" in
     ;;
     "5")
     bash ./scripts/remove_image.sh
-    exit 0
     ;;
     "6")
     xdg-open config.sh 

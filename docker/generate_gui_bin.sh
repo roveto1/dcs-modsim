@@ -1,0 +1,7 @@
+source config.sh
+
+# Cria o binário da GUI do GenESyS
+cd $GENESYS_PROJECT/$GENESYS_QT_PROJECT_SUBPATH
+qmake6 $GENESYS_QT_PROJECT
+cd $GENESYS_PROJECT/$GENESYS_GUI_SUBPATH
+make -j12
