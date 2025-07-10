@@ -34,6 +34,8 @@ case "$input" in
     if command -v xdg-open > /dev/null; then
         if command -v nohup > /dev/null; then
             echo "Abrindo arquivo de configuração."
+            echo "Se o arquivo não abrir automaticamente, você pode encontrá-lo em:"
+            echo "$(pwd)/config.sh"
             nohup xdg-open config.sh > /dev/null 2>&1 &
         fi
     else
