@@ -19,9 +19,9 @@ if docker image inspect $GENESYS_IMAGE >/dev/null 2>&1; then
             -v /tmp/.X11-unix:/tmp/.X11-unix \
             $GENESYS_IMAGE gui
     else
-        echo "AAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        echo $GENESYS_PROJECT
-        echo $GENESYS_ROOT
+        # echo "AAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        # echo $GENESYS_PROJECT
+        # echo $GENESYS_ROOT
         docker run --name genesys --rm -ti --net=host --ipc=host \
             -e DISPLAY=$DISPLAY \
             -e REMOTE=$REMOTE \
