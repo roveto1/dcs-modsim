@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="i18n">
+<file alias="GenesysQtGUI_en_US.qm">/home/roveto/dev/school/modsim/dcs-modsim/.qm/GenesysQtGUI_en_US.qm</file>
+</qresource>
+</RCC>

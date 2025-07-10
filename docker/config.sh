@@ -5,7 +5,7 @@
 ### Configurações de Ambiente
 
 # Se a execução é local ou remota (1 - código remoto, 0 - código local)
-REMOTE=1
+REMOTE=0
 
 # Driver gráfico
 MESA_LOADER_DRIVER_OVERRIDE=zink
@@ -28,13 +28,13 @@ GENESYS_IMAGE="genesys-image"
 ### Configurações do Build Docker
 
 # Utilizar cache no build da imagem (1 - sim, 0 - não)
-DOCKER_CACHE=1
+DOCKER_CACHE=0
 
 # Path do arquivo dockerfile a ser utilizado no build
 GENESYS_DOCKERFILE="Dockerfile"
 
 # Link para o repositório git
-GENESYS_REPO=https://github.com/roveto1/dcs-modsim
+GENESYS_REPO=https://github.com/rlcancian/Genesys-Simulator
 
 # Branch do repositório a ser utilizada
 GENESYS_BRANCH=master
@@ -65,5 +65,3 @@ GENESYS_QT_PROJECT=GenesysQtGUI.pro
 
 # Path do projeto Qt para execução do genesys pelo QtCreator
 GENESYS_QT_PROJECT_SUBPATH=source/applications/gui/qt/GenesysQtGUI
-
-# source/applications/TraitsApp.h

@@ -12,7 +12,7 @@ if ! grep -E "$PATTERN" "$FILE" > /dev/null; then
     exit 1
 fi
 
-# Cria o binário da GUI do GenESyS
+# Create the GUI binary
 cd $GENESYS_PROJECT/$GENESYS_QT_PROJECT_SUBPATH
 qmake6 $GENESYS_QT_PROJECT
 cd $GENESYS_PROJECT/$GENESYS_GUI_SUBPATH
