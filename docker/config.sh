@@ -28,16 +28,16 @@ GENESYS_IMAGE="genesys-image"
 ### Configurações do Build Docker
 
 # Utilizar cache no build da imagem (1 - sim, 0 - não)
-DOCKER_CACHE=1
+DOCKER_CACHE=0
 
 # Path do arquivo dockerfile a ser utilizado no build
 GENESYS_DOCKERFILE="Dockerfile"
 
 # Link para o repositório git
-# GENESYS_REPO=https://github.com/roveto1/dcs-modsim
+GENESYS_REPO=https://github.com/roveto1/dcs-modsim
 
 # Branch do repositório a ser utilizada
-# GENESYS_BRANCH=master
+GENESYS_BRANCH=master
 
 
 ### Configurações de Estrutura Interna

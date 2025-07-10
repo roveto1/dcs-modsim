@@ -1,13 +1,14 @@
 FROM ubuntu:24.04
 
 ARG VERSION=0.1.0
-ARG GENESYS_REPO=https://github.com/roveto1/dcs-modsim
 
-ENV GENESYS_BRANCH=master
-ENV GENESYS_ROOT=/home/genesys/remote
-# ENV GENESYS_PROJECT_QT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
-# ENV GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build-GenesysQtGUI-Desktop-Debug
-# ENV GENESYS_NOGUI_SUBPATH=GenesysShell
+ARG GENESYS_REPO
+ARG GENESYS_BRANCH
+ARG GENESYS_ROOT
+
+ENV GENESYS_REPO=${GENESYS_REPO}
+ENV GENESYS_BRANCH=${GENESYS_BRANCH}
+ENV GENESYS_ROOT=${GENESYS_ROOT}
 
 LABEL url=$GENESYS_REPO \
       name="docker-genesys" \

@@ -8,8 +8,6 @@ if [[ $REMOTE == 1 ]]; then
 else
   GENESYS_ROOT=$GENESYS_LOCAL_ROOT
 fi
-# echo "Raiz do projeto:"
-# echo $GENESYS_ROOT
 
 if ! command -v docker &> /dev/null; then
     echo "Docker não instalado"
