@@ -13,7 +13,7 @@ Menu: O que deseja executar?
 6. Abrir arquivo de configuração do ambiente Docker
 7. Sair
 > " input
-
+echo ""
 case "$input" in
     "1")
     bash ./scripts/gui.sh
@@ -31,7 +31,17 @@ case "$input" in
     bash ./scripts/remove_image.sh
     ;;
     "6")
-    xdg-open config.sh 
+    if command -v xdg-open > /dev/null; then
+        if command -v nohup > /dev/null; then
+            echo "Abrindo arquivo de configuração."
+            nohup xdg-open config.sh > /dev/null 2>&1 &
+        fi
+    else
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        echo Arquivo de configuração não pode ser aberto automaticamente, mas pode ser encontrado em:
+        echo "$(pwd)/config.sh"
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    fi
     ;;
     "7")
     exit 0

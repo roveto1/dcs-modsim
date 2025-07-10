@@ -28,7 +28,7 @@ GENESYS_IMAGE="genesys-image"
 ### Configurações do Build Docker
 
 # Utilizar cache no build da imagem (1 - sim, 0 - não)
-DOCKER_CACHE=0
+DOCKER_CACHE=1
 
 # Path do arquivo dockerfile a ser utilizado no build
 GENESYS_DOCKERFILE="Dockerfile"
