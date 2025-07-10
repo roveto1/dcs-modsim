@@ -1,10 +1,14 @@
 #!/bin/bash
+
+GENESYS_ROOT=""
 if [[ $REMOTE == 1 ]]; then
+    GENESYS_ROOT=$GENESYS_REMOTE_ROOT
     echo "Executando a partir do código remoto"
     git -C $GENESYS_ROOT fetch --all
     git -C $GENESYS_ROOT pull
     git -C $GENESYS_ROOT reset --hard origin/$GENESYS_BRANCH
 else
+    GENESYS_ROOT=$GENESYS_LOCAL_ROOT
     echo "Executando a partir do código local"
 fi
 

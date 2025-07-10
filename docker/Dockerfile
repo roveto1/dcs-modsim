@@ -5,12 +5,14 @@ ARG VERSION=0.1.0
 # Set arguments
 ARG GENESYS_REPO
 ARG GENESYS_BRANCH
-ARG GENESYS_ROOT
+ARG GENESYS_REMOTE_ROOT
+ARG GENESYS_LOCAL_ROOT
 
 # Set default values for environment variables
 ENV GENESYS_REPO=${GENESYS_REPO}
 ENV GENESYS_BRANCH=${GENESYS_BRANCH}
-ENV GENESYS_ROOT=${GENESYS_ROOT}
+ENV GENESYS_REMOTE_ROOT=${GENESYS_REMOTE_ROOT}
+ENV GENESYS_LOCAL_ROOT=${GENESYS_LOCAL_ROOT}
 
 LABEL url=$GENESYS_REPO \
       name="docker-genesys" \
@@ -55,7 +57,7 @@ RUN apt-get update && apt-get upgrade -y && \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Clone GenESyS
-RUN git clone -b $GENESYS_BRANCH $GENESYS_REPO $GENESYS_ROOT
+RUN git clone -b $GENESYS_BRANCH $GENESYS_REPO $GENESYS_REMOTE_ROOT
 
 # Copy entrypoint
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
