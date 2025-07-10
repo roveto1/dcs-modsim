@@ -1,15 +1,13 @@
 FROM ubuntu:24.04
-#           ^^^ Might need change
 
 ARG VERSION=0.1.0
-ARG GENESYS_REPO=https://github.com/rlcancian/Genesys-Simulator
+ARG GENESYS_REPO=https://github.com/roveto1/dcs-modsim
 
-ENV REMOTE=0
 ENV GENESYS_BRANCH=master
 ENV GENESYS_ROOT=/home/genesys/remote
-ENV GENESYS_PROJECT_QT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
-ENV GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build-GenesysQtGUI-Desktop-Debug
-ENV GENESYS_NOGUI_SUBPATH=GenesysShell
+# ENV GENESYS_PROJECT_QT_SUBPATH=source/applications/gui/qt/GenesysQtGUI/GenesysQtGUI.pro
+# ENV GENESYS_GUI_SUBPATH=source/applications/gui/qt/GenesysQtGUI/build-GenesysQtGUI-Desktop-Debug
+# ENV GENESYS_NOGUI_SUBPATH=GenesysShell
 
 LABEL url=$GENESYS_REPO \
       name="docker-genesys" \
@@ -71,7 +69,7 @@ RUN apt-get update && apt-get upgrade -y && \
 # ENV LD_LIBRARY_PATH=/opt/gcc-12.3.0/lib64:$LD_LIBRARY_PATH
 
 # Clone GenESyS
-RUN git clone $GENESYS_REPO $GENESYS_ROOT
+RUN git clone -b $GENESYS_BRANCH $GENESYS_REPO $GENESYS_ROOT
 
 # Copy entrypoint
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh

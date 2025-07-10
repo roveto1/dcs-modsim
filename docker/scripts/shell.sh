@@ -14,6 +14,7 @@ if docker image inspect $GENESYS_IMAGE >/dev/null 2>&1; then
             -e GENESYS_NOGUI_SUBPATH=$GENESYS_NOGUI_SUBPATH \
             -e QT_X11_NO_MITSHM=1 \
             -e XDG_RUNTIME_DIR=/run/user/1001 \
+            -e REMOTE=$REMOTE \
             -v /tmp/.X11-unix:/tmp/.X11-unix \
             $GENESYS_IMAGE shell
     else
